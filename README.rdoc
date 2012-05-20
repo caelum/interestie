@@ -1,0 +1,17 @@
+Interestie
+==========
+
+A simple application that receives a post and records who was interested in what.
+
+GET - yep, get :( - with a jsonp callback parameter to have your function invoked with either ok or errors set. Remember to pass both parameters:
+
+interest[email]=user_email
+interest[item]=item_the_user_is_interested_in
+
+Success example:
+
+your_callback( ok : 'ok');
+
+Failure example:
+
+your_callback( errors : 'unable to set up interest');
