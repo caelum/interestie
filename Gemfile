@@ -9,5 +9,5 @@ group :development, :test do
   gem 'rspec'
 end
 
-gem 'yasarg', '~> 0.0.1', :path => "/Users/ricardovaleriano/Work/Ruby/yasarg"
+gem 'yasarg', '~> 0.0.1'
 gem 'sinatra'
