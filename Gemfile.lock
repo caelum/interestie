@@ -71,7 +71,7 @@ GEM
     thor (0.15.4)
     tilt (1.3.3)
     tzinfo (0.3.33)
-    yasarg (0.0.4)
+    yasarg (0.0.5)
       activerecord (~> 3.2.6)
       railties (~> 3.2.6)
 

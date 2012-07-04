@@ -1,6 +1,5 @@
 require 'yasarg'
-config = Yasarg::RailsFakeApp.config.database_configuration[Rails.env]
-ActiveRecord::Base.establish_connection(config)
+
 Yasarg::Tasks.load_tasks
 
 $LOAD_PATH.unshift File.expand_path('../lib/', __FILE__)
