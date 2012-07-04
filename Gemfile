@@ -7,5 +7,5 @@ group :development, :test do
   gem 'rspec'
 end
 
-gem 'yasarg', '~> 0.0.7'
+gem 'yasarg', '~> 0.0.8.1'
 gem 'sinatra'
