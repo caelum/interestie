@@ -1,7 +1,15 @@
-#!/usr/bin/env rake
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
+require 'yasarg'
+Yasarg::Tasks.load_tasks
 
-require File.expand_path('../config/application', __FILE__)
+$LOAD_PATH.unshift File.expand_path('../lib/', __FILE__)
 
-Interestie::Application.load_tasks
+task :default => [:specs]
+task :specs => [:"specs:all"]
+namespace :specs do
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new "all" do |t|
+    t.pattern = "spec/**/*_spec.rb"
+    t.rspec_opts = ['--color', '--format documentation', '--require spec_helper']
+  end
+end
+

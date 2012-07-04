@@ -1,4 +1,3 @@
-# This file is used by Rack-based servers to start the application.
+require './lib/interestie/application'
 
-require ::File.expand_path('../config/environment',  __FILE__)
-run Interestie::Application
+run Sinatra::Application
