@@ -10,7 +10,8 @@ def database_url
   database_config = YAML.load(ERB.new(File.read(database_yml)).result(binding))
   config = database_config[ENV["RACK_ENV"]]
   host = config["host"] || "localhost"
-  "#{config["adapter"]}://#{config["username"]}:#{config["password"]}@#{host}/#{config["database"]}"
+  adapert = config["adapter"] == "postgresql" ? "postgres" : config["adapter"]
+  "#{adapter}://#{config["username"]}:#{config["password"]}@#{host}/#{config["database"]}"
 end
 
 ENV["DATABASE_URL"] ||= database_url
