@@ -13,13 +13,7 @@ class Interest < Sequel::Model
     super
   end
 
-=begin
-  attr_accessible :email, :item
-  validates :item, presence: true
-  validates :email, length: { :minimum => 5 }
-  
   def self.rank
-    Hash[Interest.all.group_by(&:item).map{|k,v| [k, v.length]}]
+    Hash[db[:interests].group_and_count(:item).map{|i| [ i[:item], i[:count] ]}]
   end
-=end
 end
