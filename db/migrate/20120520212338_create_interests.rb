@@ -1,10 +1,11 @@
-class CreateInterests < ActiveRecord::Migration
-  def change
-    create_table :interests do |t|
-      t.string :email
-      t.string :item
-
-      t.timestamps
+Sequel.migration do
+  up do
+    create_table "interests" do |t|
+      primary_key :id
+      String :email
+      String :item
+      DateTime :created_at, null: false
+      DateTime :updated_at, null: false
     end
   end
 end
