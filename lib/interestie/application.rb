@@ -1,8 +1,8 @@
 require "sinatra"
 require "json"
-require "interest"
 
 Interestie::Connection.establish
+require "interest"
 
 get "/" do
   interest = Interest.new(params[:interest])
