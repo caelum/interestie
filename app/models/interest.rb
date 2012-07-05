@@ -1,4 +1,11 @@
-class Interest
+class Interest < Sequel::Model
+  set_allowed_columns :email, :item
+
+  plugin :validation_helpers
+  def validate
+    validates_presence :item
+    validates_min_length 5, :email
+  end
 =begin
   attr_accessible :email, :item
   validates :item, presence: true
