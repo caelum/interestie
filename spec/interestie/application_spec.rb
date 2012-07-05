@@ -1,4 +1,3 @@
-require 'interestie/application'
 require 'rspec'
 require 'rack/test'
 

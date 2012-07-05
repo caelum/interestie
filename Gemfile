@@ -1,11 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'pg'
+gem "pg"
+gem "sequel", "~>3.37.0"
 
 group :development, :test do
-  gem 'sqlite3'
-  gem 'rspec'
+  gem "rspec"
 end
-
-gem 'yasarg', '~> 0.0.8.2'
-gem 'sinatra'

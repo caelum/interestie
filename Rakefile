@@ -1,8 +1,5 @@
-require 'yasarg'
-
-Yasarg::Tasks.load_tasks
-
 $LOAD_PATH.unshift File.expand_path('../lib/', __FILE__)
+require "interestie"
 
 if ENV["RACK_ENV"] == "development" || ENV["RACK_ENV"] == "test"
   task :default => [:specs]

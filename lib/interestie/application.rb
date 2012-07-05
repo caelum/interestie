@@ -1,11 +1,8 @@
 require "sinatra"
 require "json"
-
-require "yasarg"
-Yasarg::Connection.establish
-
-$LOAD_PATH.unshift File.expand_path("../../../app/models", __FILE__)
 require "interest"
+
+Interestie::Connection.establish
 
 get "/" do
   interest = Interest.new(params[:interest])
