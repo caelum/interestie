@@ -42,7 +42,7 @@ describe "Interestie!" do
 
   it "adds a interestie" do
     get_interest
-    last = Interest.last
+    last = Interest.order(:created_at).last
     last.email.should == email
     last.item.should == item
   end
