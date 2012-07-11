@@ -5,8 +5,15 @@ module Sequelinha
     end
 
     attr_accessor :config
-    def self.=~(adapter)
-      nil
+
+    class << self
+      def =~(adapter)
+        nil
+      end
+    end
+
+    def application_root
+      @config["application_root"]
     end
 
     def username

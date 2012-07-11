@@ -10,7 +10,7 @@ module Sequelinha
       end
 
       def database
-        "#{Sequelinha.config.project_root}/#{super}"
+        File.join(self.application_root, super)
       end
 
       def self.=~(adapter)

@@ -13,10 +13,4 @@ if ENV["RACK_ENV"] == "development" || ENV["RACK_ENV"] == "test"
   end
 end
 
-namespace :db do
-  desc "migrations"
-  task :migrate do
-    migrations = File.expand_path("../db/migrate", __FILE__)
-    system "sequel -m #{migrations} #{ENV["DATABASE_URL"]}"
-  end
-end
+Sequelinha::Tasks.load

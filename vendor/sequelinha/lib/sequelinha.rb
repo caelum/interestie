@@ -3,6 +3,7 @@ require "sequelinha/connection_url"
 require "sequelinha/connection_url_factory"
 require "sequelinha/adapters/sqlite"
 require "sequelinha/adapters/postgres"
+require "sequelinha/tasks"
 
 module Sequelinha
   def self.implementations
@@ -15,15 +16,18 @@ module Sequelinha
   end
 
   def self.config
-    @config
+    @config ||= Config.new
   end
 
   def self.configure
-    @config ||= Config.new
-    yield(@config) if block_given?
+    yield(self.config) if block_given?
 
-    @config.database_yml ||= "#{@config.project_root}/config/database.yml"
-    @config
+    self.config.database_yml ||= "#{self.config.application_root}/config/database.yml"
+
+    # prepares interestie to run like a boss on heroku
+    ENV["DATABASE_URL"] ||= Sequelinha.database_url
+
+    self.config
   end
 
   def self.database_url
