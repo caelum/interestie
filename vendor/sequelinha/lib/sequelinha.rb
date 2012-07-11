@@ -145,7 +145,7 @@ module Sequelinha
     require "erb"
     database_yml = config["database_yml"]
     database_config = YAML.load(ERB.new(File.read(database_yml)).result(binding))
-    config = database_config[ENV["RACK_ENV"]]
+    config = database_config[ENV["RACK_ENV"] || "development"]
     ConnectionURLFactory.get_instance config
   end
 end
