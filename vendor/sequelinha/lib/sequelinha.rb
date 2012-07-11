@@ -1,3 +1,4 @@
+require "sequel"
 require "sequelinha/config"
 require "sequelinha/connection_url"
 require "sequelinha/connection_url_factory"
@@ -31,12 +32,26 @@ module Sequelinha
   end
 
   def self.database_url
-    require "yaml"
-    require "erb"
-    database_yml = config["database_yml"]
-    database_config = YAML.load(ERB.new(File.read(database_yml)).result(binding))
-    config = database_config[ENV["RACK_ENV"] || "development"]
-    ConnectionURLFactory.url_for config
+    env = ENV["RACK_ENV"] || "development"
+    config = self.database_config[env]
+    connection_url = ConnectionURLFactory.url_for config
+    connection_url
+  end
+
+  def self.establish
+    ENV["DATABASE_URL"] = Sequelinha.database_url
+    Sequel.connect(ENV["DATABASE_URL"])
+  end
+
+  private
+  def self.database_config
+    @database_yml_file ||= proc {
+      require "yaml"
+      require "erb"
+      database_yml = config["database_yml"]
+      File.read(database_yml)
+    }.call
+    YAML.load(ERB.new(@database_yml_file).result(binding))
   end
 end
 

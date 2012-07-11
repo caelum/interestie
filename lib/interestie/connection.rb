@@ -1,9 +1,9 @@
-require "sequel"
+require "sequelinha"
 
 module Interestie
   class Connection
     def self.establish
-      Sequel.connect(ENV["DATABASE_URL"])
+      Sequelinha.establish
     end
   end
 end
