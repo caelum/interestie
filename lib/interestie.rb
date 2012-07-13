@@ -1,6 +1,9 @@
+require 'rubygems'
+gemfile = File.expand_path('../../Gemfile', __FILE__)
+require 'bundler/setup' if File.exists?(gemfile)
+
 ENV["RACK_ENV"] ||= "development"
 
-$LOAD_PATH.unshift File.expand_path("../../vendor/sequelinha/lib", __FILE__)
 require "sequelinha"
 Sequelinha.configure do |config|
   config.application_root = File.expand_path("../../", __FILE__)
