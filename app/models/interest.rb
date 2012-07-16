@@ -14,6 +14,8 @@ class Interest < Sequel::Model
   end
 
   def self.rank
-    Hash[db[:interests].group_and_count(:item).map{|i| [ i[:item], i[:count] ]}]
+    count_by_item = db[:interests].group_and_count :item
+    grouped_count = count_by_item.map { |i| [i[:item], i[:count]] }
+    Hash[grouped_count]
   end
 end
