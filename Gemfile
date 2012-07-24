@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 gem "pg"
-gem "sequel", "~>3.37.0"
 gem "sinatra"
+gem "sequel", "~>3.37.0"
 gem "sequelinha", "~>0.0.1"
 
 group :development, :test do
